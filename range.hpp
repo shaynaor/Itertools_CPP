@@ -36,6 +36,10 @@ namespace itertools{
                     /* Constructor.  */
                     iterator(T item)
                     : _it(item){}
+                    
+                     /* Copy constructor. */
+                    iterator(const iterator  &other)
+                    : _it(other._it) {}
 
                     /* Operator * implementation. Returns a reference T */
 		            T& operator*() {
@@ -74,12 +78,6 @@ namespace itertools{
             }; // End iterator inner class.
 
 
-
-
-
-
-
-
             /* Inner const_iterator class */
             class const_iterator{
 
@@ -93,9 +91,8 @@ namespace itertools{
                     : _it(item){}
                     
                     /* Copy constructor. */
-                    const_iterator(const_iterator& other){
-                        this->_it = other->_it;
-                    }
+                    const_iterator(const const_iterator  &other)
+                    :_it(other._it) {}
 
                     /* Operator * implementation. Returns a reference T */
 		            const T& operator*() const {
@@ -132,17 +129,6 @@ namespace itertools{
 
 
             }; // End const_iterator inner class.
-
-
-
-
-
-
-
-
-
-
-
 
 
             /* Returns iterator to range begin. */
