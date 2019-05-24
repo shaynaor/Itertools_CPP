@@ -73,14 +73,96 @@ namespace itertools{
 
             }; // End iterator inner class.
 
+
+
+
+
+
+
+
+            /* Inner const_iterator class */
+            class const_iterator{
+
+                private:
+                    /* Private data-members.*/
+                     T _it;
+
+                public:
+                    /* Constructor.  */
+                    const_iterator(T item)
+                    : _it(item){}
+                    
+                    /* Copy constructor. */
+                    const_iterator(const_iterator& other){
+                        this->_it = other->_it;
+                    }
+
+                    /* Operator * implementation. Returns a reference T */
+		            const T& operator*() const {
+			            return _it;
+		            }
+
+                    /* Operator -> implementation. */
+		            T* operator->() const {
+			            return &(_it);
+		            }
+
+		            /* Prefix operator ++ implementation.(++i)  */
+		            const_iterator& operator++() {
+                        _it += 1;
+			            return *this;
+		            }
+
+		            /* Postfix operator ++ implementation.(i++)  */ 
+		            const const_iterator operator++(int) {
+                        const_iterator it = *this; 
+                         ++*this; 
+                        return it; 
+		            }
+                    
+                    /* Operator == implementation. Return true iff _it == rhs._it */
+                    bool operator==(const const_iterator& rhs) const {
+			            return _it == rhs._it;
+		            }
+
+                    /* Operator != implementation. Return true iff _it != rhs._it */
+		            bool operator!=(const const_iterator& rhs) const {
+			            return _it != rhs._it;
+                    }
+
+
+            }; // End const_iterator inner class.
+
+
+
+
+
+
+
+
+
+
+
+
+
             /* Returns iterator to range begin. */
             iterator begin() {
 		        return iterator(_begin);
 	        }
 
+            /* Returns const iterator to range begin. */
+            const const_iterator begin() const {
+		        return const_iterator(_begin);
+	        }
+
             /* Returns iterator to range end. */
 	        iterator end() {
 		        return iterator(_end);
+            }
+
+            /* Returns const iterator to range end. */
+	        const const_iterator end() const{
+		        return const_iterator(_end);
             }
 
        
